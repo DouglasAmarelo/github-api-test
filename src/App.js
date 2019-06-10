@@ -8,12 +8,17 @@ const user = `douglasamarelo`;
 const githubApi = `https://api.github.com`;
 
 class App extends Component {
+	constructor(props) {
+		super(props)
+		this.updateUser = this.updateUser.bind(this);
+	}
+
 	state = {
 		userInformation: {},
 		repositories: null,
 		commits: {},
 		user: ''
-	};
+	}
 
 	componentDidMount() {
 		// Informações de usuário
