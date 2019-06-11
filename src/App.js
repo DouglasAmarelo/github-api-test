@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import ListItems from './components/Listitems/Listitems';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Header from './components/Header/Header';
 import Profile from './components/Profile/Profile';
-
-const user = `douglasamarelo`;
-const githubApi = `https://api.github.com`;
+import GetRepositories from './GetRepositories';
+import Api from './helpers/Api';
 
 class App extends Component {
-	constructor(props) {
-		super(props)
-		this.updateUser = this.updateUser.bind(this);
-	}
-
 	state = {
 		userInformation: {},
 		repositories: null,
@@ -21,24 +14,24 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		// Informações de usuário
-		fetch(`${githubApi}/users/${user}`)
-			.then(res => res.json())
-			.then(userInformation => this.setState({ userInformation }));
-
-		// Repositórios
-		fetch(`${githubApi}/users/${user}/repos`)
-			.then(res => res.json())
-			.then(repositories => this.setState({ repositories }));
-
 		// Commits - /repos/:owner/:repo/commits
-		fetch(`${githubApi}/repos/${user}/portfolio/commits`)
+		fetch(`${Api.githubApi}/repos/${Api.user}/portfolio/commits`)
 			.then(res => res.json())
 			.then(commits => this.setState({ commits }));
 	};
 
-	updateUser(user) {
-		console.log('APP User', user);
+	getUserInformation = (user) => {
+		// Informações de usuário
+		fetch(`${Api.githubApi}/users/${user}`)
+			.then(res => res.json())
+			.then(userInformation => this.setState({ userInformation }));
+	};
+
+	updateRepositories = (repositories) => {
+		this.setState({ repositories });
+	};
+
+	updateUser = (user) => {
 		this.setState({ user: user });
 	};
 
@@ -47,16 +40,28 @@ class App extends Component {
 
 		return (
 			<Router>
-				<Header updateUser={this.updateUser} />
+				<Header
+					updateUser={this.updateUser}
+					getUserInformation={this.getUserInformation}
+				/>
+
 				<div className="App container">
-
-					<div className="content">
-
-						<Route exact path="/repositories" render={() => (
+					{
+						user && (
 							<div>
 								<Profile userInformation={userInformation} />
-								<ListItems user={user} repositories={repositories} />
+								<Link to="/repositories">Listar repositórios</Link>
 							</div>
+						)
+					}
+
+					<div className="content">
+						<Route exact path="/repositories" render={() => (
+							<GetRepositories
+								user={user}
+								repositories={repositories}
+								updateRepositories={this.updateRepositories}
+							/>
 						)} />
 					</div>
 				</div>

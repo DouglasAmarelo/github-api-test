@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 class Profile extends Component {
 	render() {
 		const { userInformation } = this.props;
-		const { avatar_url: vatar, name, bio, login, url } = userInformation;
+		const { avatar_url: avatar, name, bio, login, url } = userInformation;
 
 		return (
 			<div className="profile">
-				<p><img src={vatar} alt={name}/></p>
+				<p><img src={avatar} alt={name}/></p>
 				<p>{name}</p>
 				<p>{bio}</p>
 				<p>{login}</p>

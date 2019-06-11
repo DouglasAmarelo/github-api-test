@@ -1,7 +1,7 @@
 // import React, { Component } from 'react';
 import React from 'react';
 
-const Header = ({ updateUser }) => {
+const Header = ({ updateUser, getUserInformation }) => {
 	return (
 		<header>
 			<div className="container">
@@ -11,10 +11,10 @@ const Header = ({ updateUser }) => {
 				<form action="#"
 					onSubmit={(e) => {
 						e.preventDefault();
+						const user = e.target.elements.user.value;
 
-						console.log('e.target.elements.user.value', e.target.elements.user.value);
-
-						updateUser(e.target.elements.user.value);
+						updateUser(user);
+						getUserInformation(user);
 					}}
 				>
 					<label htmlFor="user">User</label> <br/>
