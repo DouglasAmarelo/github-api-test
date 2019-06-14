@@ -3,9 +3,6 @@ import Api from './helpers/Api';
 import ListItems from './components/Listitems/Listitems';
 
 class GetRepositories extends Component {
-	componentWillReceiveProps() {
-		this.getRepositories(this.props.user);
-	}
 
 	// Repositórios
 	getRepositories = (user) => {

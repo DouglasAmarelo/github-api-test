@@ -1,4 +1,3 @@
-// import React, { Component } from 'react';
 import React from 'react';
 
 const Header = ({ updateUser, getUserInformation }) => {
@@ -8,20 +7,6 @@ const Header = ({ updateUser, getUserInformation }) => {
 
 				<h1>GitHub repositories list</h1>
 
-				<form action="#"
-					onSubmit={(e) => {
-						e.preventDefault();
-						const user = e.target.elements.user.value;
-
-						updateUser(user);
-						getUserInformation(user);
-					}}
-				>
-					<label htmlFor="user">User</label> <br/>
-					<input id="user" name="user" type="text" />
-
-					<input type="submit" value="Listar repositórios"/>
-				</form>
 			</div>
 		</header>
 	);

@@ -6,7 +6,17 @@ const ListItems = ({ repositories }) => (
 		{
 			repositories && repositories.length > 0 ? (
 				repositories.map(item => (
-					<li className="list-items__item" key={item.id}>{item.name}</li>
+					<li
+						className="list-items__item"
+						key={item.id}
+						onClick={(e) => {
+							e.preventDefault();
+
+							console.log(e);
+						}}
+					>
+						{item.name}
+					</li>
 				))
 			)
 			: (
