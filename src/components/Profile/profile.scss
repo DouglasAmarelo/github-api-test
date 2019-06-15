@@ -1,0 +1,24 @@
+.profile {
+
+	p {
+		margin: 10px 0;
+	}
+
+	&__image {
+		background-color: #fff;
+		border-radius: 50%;
+		border: 10px solid #fff;
+		height: 150px;
+		left: 50%;
+		overflow: hidden;
+		position: absolute;
+		top: -75px;
+		transform: translateX(-50%);
+		width: 150px;
+
+		img {
+			display: block;
+			max-width: 100%;
+		}
+	}
+}

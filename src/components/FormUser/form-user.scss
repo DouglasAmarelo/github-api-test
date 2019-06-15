@@ -1,0 +1,52 @@
+.form-get-user {
+	margin: 3em auto;
+	padding: 3em;
+
+	// GitHub logo
+	&:before {
+		background: url('https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png') no-repeat center center;
+		background-size: 110%;
+		border-radius: 50%;
+		box-shadow: 0 -5px 8px #ccc;
+		content: '';
+		height: 80px;
+		left: 50%;
+		overflow: hidden;
+		position: absolute;
+		top: -40px;
+		transform: translateX(-50%);
+		width: 80px;
+	}
+
+	label {
+		display: block;
+		font-weight: bold;
+		margin-top: 1em;
+		text-align: center;
+	}
+
+	&__user {
+		background: #fff;
+		border: 1px solid #ccc;
+		display: block;
+		margin: 1.5em 0;
+		padding: 1.2em;
+		width: 100%;
+	}
+
+	&__submit {
+		background-color: #ccc;
+		border: 2px solid #ccc;
+		align-self: flex-end;
+		padding: .8em 2em;
+		width: 48%;
+
+		&:hover { background-color: #fff; }
+	}
+
+	&__error {
+		font-weight: bold;
+		color: #d00;
+		text-align: center;
+	}
+}

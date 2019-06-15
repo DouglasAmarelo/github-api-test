@@ -1,17 +1,61 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+import './profile.scss';
 
 class Profile extends Component {
 	render() {
-		const { userInformation } = this.props;
-		const { avatar_url: avatar, name, bio, login, url } = userInformation;
+		const { user, userInformation, getRepositories } = this.props;
+		const {
+			avatar_url,
+			bio,
+			blog,
+			name,
+			login,
+			html_url,
+			location,
+			created_at,
+			updated_at
+
+		} = userInformation;
 
 		return (
-			<div className="profile">
-				<p><img src={avatar} alt={name}/></p>
-				<p>{name}</p>
-				<p>{bio}</p>
-				<p>{login}</p>
-				<p>{url}</p>
+			<div className="card profile">
+				<div>
+					<div className="profile__image card__icon">
+						<img
+							src={avatar_url}
+							alt={name}
+						/>
+					</div>
+					<h2 className="profile__name">{name}</h2>
+
+					<p className="profile__bio">{bio}</p>
+					<p className="profile__user">
+						<a
+							href={html_url}
+							title={login}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							@{login}
+						</a>
+					</p>
+					<p className="profile__blog">{blog}</p>
+					<p>{location}</p>
+					<p>Created: {created_at}</p>
+					<p>Updated: {updated_at}</p>
+				</div>
+
+				<Link
+					to="/repositories"
+					onClick={() => {
+						getRepositories(user);
+					}}
+				>
+					Listar repositórios
+				</Link>
+
 			</div>
 		);
 	};
