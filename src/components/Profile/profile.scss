@@ -1,24 +1,51 @@
 .profile {
+	margin-top: 5em;
+	max-width: 400px;
 
 	p {
-		margin: 10px 0;
+		display: flex;
+		font-size: 14px;
+		margin: 5px 0;
+
+		&:empty { display: none; }
 	}
 
-	&__image {
-		background-color: #fff;
-		border-radius: 50%;
-		border: 10px solid #fff;
-		height: 150px;
-		left: 50%;
-		overflow: hidden;
-		position: absolute;
-		top: -75px;
-		transform: translateX(-50%);
-		width: 150px;
-
-		img {
-			display: block;
-			max-width: 100%;
-		}
+	span {
+		display: block;
+		margin-right: 10px;
 	}
+
+	a {
+		color: #444;
+		text-decoration: none;
+	}
+
+	&__header {
+		border-bottom: 1px solid #ccc;
+		text-align: center;
+		padding: 1em 0;
+		margin: 1em 0 0 0;
+	}
+
+	&__content {
+		// border: 1px solid #ccc;
+		padding: 1em 0;
+	}
+
+	&__name {
+		margin: 0;
+	}
+
+	&__bio {
+		font-size: 14px;
+		padding: 0;
+	}
+
+	// &__blog {
+	// 	&:before { content: 'Blog: '; }
+	// }
+
+	// &__location {
+	// 	&::before { content: 'Location: '; }
+	// }
 }

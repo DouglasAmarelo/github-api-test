@@ -14,10 +14,18 @@ class Profile extends Component {
 			login,
 			html_url,
 			location,
-			created_at,
-			updated_at
+			created_at
 
 		} = userInformation;
+
+		const formatDate = (data) => {
+			let dateFormated = new Date(data);
+			let month = dateFormated.getMonth();
+			let day   = dateFormated.getDate();
+			let year  = dateFormated.getFullYear();
+
+			return `${day}/${month}/${year}`;
+		};
 
 		return (
 			<div className="card profile">
@@ -28,34 +36,67 @@ class Profile extends Component {
 							alt={name}
 						/>
 					</div>
-					<h2 className="profile__name">{name}</h2>
+					<div className="profile__header">
+						<h2 className="profile__name">{name}</h2>
+						<p className="profile__bio">{bio}</p>
+					</div>
 
-					<p className="profile__bio">{bio}</p>
-					<p className="profile__user">
-						<a
-							href={html_url}
-							title={login}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							@{login}
-						</a>
-					</p>
-					<p className="profile__blog">{blog}</p>
-					<p>{location}</p>
-					<p>Created: {created_at}</p>
-					<p>Updated: {updated_at}</p>
+					<div className="profile__content">
+						{login && (
+							<p className="profile__user">
+								<span>Login: </span>
+								<a
+									href={html_url}
+									title={login}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<strong>@{login}</strong>
+								</a>
+							</p>
+						)}
+
+						{blog && (
+							<p className="profile__blog">
+								<span>Site: </span>
+								<a
+									href={blog}
+									title={blog}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<strong>{blog}</strong>
+								</a>
+							</p>
+						)}
+
+						{location && (
+							<p className="profile__location">
+								<span>Localização: </span>
+								<strong>{location}</strong>
+							</p>
+						)}
+
+						{created_at && (
+							<p>
+								<span>Usuário desde: </span>
+								<strong>{formatDate(created_at)}</strong>
+							</p>
+						)}
+					</div>
 				</div>
 
-				<Link
-					to="/repositories"
-					onClick={() => {
-						getRepositories(user);
-					}}
-				>
-					Listar repositórios
-				</Link>
-
+				{user && (
+					<div className="flex flex-center">
+						<Link
+							className="button"
+							to="/repositories"
+							onClick={() => getRepositories(user)}
+						>
+							Listar repositórios
+						</Link>
+					</div>
+				)}
 			</div>
 		);
 	};

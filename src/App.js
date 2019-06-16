@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-dom';
 import FormUser from './components/FormUser/FormUser';
 import Profile from './components/Profile/Profile';
 import Api from './helpers/Api';
-import ListItems from './components/Listitems/Listitems';
+import Repositories from './components/Repositories/Repositories';
+import Commits from './components/Commits/Commits';
 
 class App extends Component {
 	state = {
 		userInformation: {},
 		repositories: null,
+		repositorie: null,
 		commits: {},
 		user: '',
 		userNotFound: null
@@ -54,7 +56,7 @@ class App extends Component {
 	getCommits = (user, repositorie) => {
 		fetch(`${Api.githubApi}/repos/${user}/${repositorie}/commits`)
 			.then(res => res.json())
-			.then(commits => this.setState({ commits }));
+			.then(commits => this.setState({ repositorie, commits }));
 	};
 
 	getRamdomUser = () => {
@@ -63,8 +65,6 @@ class App extends Component {
 
 		this.updateUser(friend);
 		this.getUserInformation(friend);
-
-		console.log(friend);
 
 		return friend;
 	};
@@ -88,7 +88,14 @@ class App extends Component {
 	};
 
 	render() {
-		const { user, userNotFound, userInformation, repositories } = this.state;
+		const {
+			user,
+			userNotFound,
+			userInformation,
+			repositories,
+			commits,
+			repositorie
+		} = this.state;
 
 		return (
 			<Router>
@@ -96,29 +103,67 @@ class App extends Component {
 					<header className="header">
 						<Route exact path="/" render={() => (
 							<FormUser
-								updateUser={this.updateUser}
-								getUserInformation={this.getUserInformation}
-								getRamdomUser={this.getRamdomUser}
 								clearUser={this.clearUser}
+								getRamdomUser={this.getRamdomUser}
+								getUserInformation={this.getUserInformation}
+								updateUser={this.updateUser}
 								userNotFound={userNotFound}
 							/>
 						)} />
 
 						{user && (
-							<Profile user={user} userInformation={userInformation} getRepositories={this.getRepositories} />
+							<Profile
+								getRepositories={this.getRepositories}
+								user={user}
+								userInformation={userInformation}
+							/>
 						)}
 					</header>
 
 					<Route exact path="/repositories" render={() => (
 						<div className="content">
-							<h1>Repositories</h1>
-							<Link to="/" children="Voltar para a home" />
+							<div className="flex flex-space flex-align-center">
+								<h1>Repositories</h1>
+								<Link to="/" children="Voltar para a home" />
+							</div>
+
 							{user && repositories && (
-								<ListItems repositories={repositories} />
+								<Repositories
+									getCommits={this.getCommits}
+									repositories={repositories}
+									user={user}
+								/>
 							)}
 						</div>
 					)} />
 
+					<Route path={`/:${user}/:${repositorie}`} render={() => (
+						<div className="content">
+							<div className="flex flex-space flex-align-center">
+								<h1>Repositorie</h1>
+								<Link to="/repositories" children="Voltar para a lista de repositórios" />
+							</div>
+
+							{user && commits && (
+								<Commits
+									commits={commits}
+									user={user}
+								/>
+							)}
+						</div>
+					)} />
+
+					<footer className="footer">
+						<p>
+							Built with <span className="heart">❤</span> and React by&nbsp;
+							<a
+								href="https://douglasamarelo.com/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								@DouglasAmarelo
+							</a> - © 2019</p>
+					</footer>
 				</div>
 			</Router>
 		);

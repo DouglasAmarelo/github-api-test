@@ -17,10 +17,13 @@ const FormUser = ({ updateUser, getUserInformation, getRamdomUser, clearUser, us
 			}}
 			onInput={(e) => {
 				e.preventDefault();
-
 				clearUser();
 			}}
 		>
+			<div className="card__icon">
+				<img src="https://image.flaticon.com/icons/svg/25/25231.svg" alt="GitHub"/>
+			</div>
+
 			<label htmlFor="user">Nome do usuário no GitHub</label>
 
 			<input
@@ -30,20 +33,24 @@ const FormUser = ({ updateUser, getUserInformation, getRamdomUser, clearUser, us
 				type="text"
 				placeholder="Ex: @douglasamarelo"
 				autoComplete="off"
+				value="douglasamarelo"
 			/>
 
 			<div className="flex">
-				<button
-					className="form-get-user__submit"
-					onClick={() => getRamdomUser()}
+				<span
+					className="button --ramdom-user"
+					onClick={(e) => {
+						e.preventDefault();
+						getRamdomUser();
+					}}
 				>
-					Usuário ramdomico
-				</button>
+					Usuário ramdômico
+				</span>
 
 				<input
-					className="form-get-user__submit"
+					className="button --submit"
 					type="submit"
-					value="Encontrar GitHub user"
+					value="Encontrar usuário"
 				/>
 			</div>
 
