@@ -33,7 +33,6 @@ const FormUser = ({ updateUser, getUserInformation, getRamdomUser, clearUser, us
 				type="text"
 				placeholder="Ex: @douglasamarelo"
 				autoComplete="off"
-				value="douglasamarelo"
 			/>
 
 			<div className="flex">
