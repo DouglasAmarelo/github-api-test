@@ -3,6 +3,41 @@ import { Link } from 'react-router-dom';
 
 import './profile.scss';
 
+const respostaApi = {
+	"login": "DouglasAmarelo",
+	"id": 3269950,
+	"node_id": "MDQ6VXNlcjMyNjk5NTA=",
+	"avatar_url": "https://avatars2.githubusercontent.com/u/3269950?v=4",
+	"gravatar_id": "",
+	"url": "https://api.github.com/users/DouglasAmarelo",
+	"html_url": "https://github.com/DouglasAmarelo",
+	"followers_url": "https://api.github.com/users/DouglasAmarelo/followers",
+	"following_url": "https://api.github.com/users/DouglasAmarelo/following{/other_user}",
+	"gists_url": "https://api.github.com/users/DouglasAmarelo/gists{/gist_id}",
+	"starred_url": "https://api.github.com/users/DouglasAmarelo/starred{/owner}{/repo}",
+	"subscriptions_url": "https://api.github.com/users/DouglasAmarelo/subscriptions",
+	"organizations_url": "https://api.github.com/users/DouglasAmarelo/orgs",
+	"repos_url": "https://api.github.com/users/DouglasAmarelo/repos",
+	"events_url": "https://api.github.com/users/DouglasAmarelo/events{/privacy}",
+	"received_events_url": "https://api.github.com/users/DouglasAmarelo/received_events",
+	"type": "User",
+	"site_admin": false,
+	"name": "Douglas \"amarelo\" Lopes",
+	"company": "@jussilabs ",
+	"blog": "http://douglasamarelo.com/",
+	"location": "Brazil, São Paulo - SP",
+	"email": null,
+	"hireable": null,
+	"bio": "Front-end Developer, Vtex Interface Developer e Líder técnico da equipe de tecnologia da @jussilabs \r\n",
+	"public_repos": 28,
+	"public_gists": 5,
+	"followers": 32,
+	"following": 61,
+	"created_at": "2013-01-14T23:11:49Z",
+	"updated_at": "2019-06-16T13:50:23Z"
+};
+
+
 class Profile extends Component {
 	render() {
 		const { user, userInformation, getRepositories } = this.props;
@@ -103,70 +138,3 @@ class Profile extends Component {
 };
 
 export default Profile;
-
-
-
-// {…}
-// avatar_url:
-// "https://avatars2.githubusercontent.com/u/3269950?v=4"
-// bio:
-// "Front-end Developer, Vtex Interface Developer e Gerente de tecnologia da @jussilabs "
-// blog:
-// "http://douglasamarelo.com/"
-// company:
-// "@jussilabs "
-// created_at:
-// "2013-01-14T23:11:49Z"
-// email:
-// null
-// events_url:
-// "https://api.github.com/users/DouglasAmarelo/events{/privacy}"
-// followers:
-// 32
-// followers_url:
-// "https://api.github.com/users/DouglasAmarelo/followers"
-// following:
-// 61
-// following_url:
-// "https://api.github.com/users/DouglasAmarelo/following{/other_user}"
-// gists_url:
-// "https://api.github.com/users/DouglasAmarelo/gists{/gist_id}"
-// gravatar_id:
-// ""
-// hireable:
-// null
-// html_url:
-// "https://github.com/DouglasAmarelo"
-// id:
-// 3269950
-// location:
-// "Brazil, São Paulo - SP"
-// login:
-// "DouglasAmarelo"
-// name:
-// "Douglas \"amarelo\" Lopes"
-// node_id:
-// "MDQ6VXNlcjMyNjk5NTA="
-// organizations_url:
-// "https://api.github.com/users/DouglasAmarelo/orgs"
-// public_gists:
-// 5
-// public_repos:
-// 28
-// received_events_url:
-// "https://api.github.com/users/DouglasAmarelo/received_events"
-// repos_url:
-// "https://api.github.com/users/DouglasAmarelo/repos"
-
-// site_admin:
-// false
-// starred_url:
-// "https://api.github.com/users/DouglasAmarelo/starred{/owner}{/repo}"
-// subscriptions_url:
-// "https://api.github.com/users/DouglasAmarelo/subscriptions"
-// type:
-// "User"
-// updated_at:
-// "2019-05-16T17:15:08Z"
-// url:
-// "https://api.github.com/users/DouglasAmarelo"
